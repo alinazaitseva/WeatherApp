@@ -16,6 +16,8 @@
 		CE5206A520AAFCA600A219F3 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5206A420AAFCA600A219F3 /* CollectionViewController.swift */; };
 		CE5206A720AAFD3C00A219F3 /* WeekTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5206A620AAFD3C00A219F3 /* WeekTableViewController.swift */; };
 		CE5206AB20AB203300A219F3 /* WeatherGetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5206AA20AB203300A219F3 /* WeatherGetter.swift */; };
+		CEBA6EA320AB821F00B7EEA5 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBA6EA220AB821F00B7EEA5 /* Weather.swift */; };
+		CEBA6EA520AB86FE00B7EEA5 /* WeatherTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBA6EA420AB86FE00B7EEA5 /* WeatherTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		CE5206A420AAFCA600A219F3 /* CollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		CE5206A620AAFD3C00A219F3 /* WeekTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekTableViewController.swift; sourceTree = "<group>"; };
 		CE5206AA20AB203300A219F3 /* WeatherGetter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherGetter.swift; sourceTree = "<group>"; };
+		CEBA6EA220AB821F00B7EEA5 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		CEBA6EA420AB86FE00B7EEA5 /* WeatherTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,7 @@
 				CE5206A220AAF7E800A219F3 /* MainViewController.swift */,
 				CE5206A420AAFCA600A219F3 /* CollectionViewController.swift */,
 				CE5206A620AAFD3C00A219F3 /* WeekTableViewController.swift */,
+				CEBA6EA420AB86FE00B7EEA5 /* WeatherTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -96,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				CE5206AA20AB203300A219F3 /* WeatherGetter.swift */,
+				CEBA6EA220AB821F00B7EEA5 /* Weather.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -172,10 +178,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CEBA6EA520AB86FE00B7EEA5 /* WeatherTableViewController.swift in Sources */,
 				CE5206A520AAFCA600A219F3 /* CollectionViewController.swift in Sources */,
 				CE52068C20AADB7100A219F3 /* AppDelegate.swift in Sources */,
 				CE5206A320AAF7E800A219F3 /* MainViewController.swift in Sources */,
 				CE5206AB20AB203300A219F3 /* WeatherGetter.swift in Sources */,
+				CEBA6EA320AB821F00B7EEA5 /* Weather.swift in Sources */,
 				CE5206A720AAFD3C00A219F3 /* WeekTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
