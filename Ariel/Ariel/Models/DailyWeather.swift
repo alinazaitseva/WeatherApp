@@ -41,9 +41,7 @@ struct DailyWeather {
         let task = URLSession.shared.dataTask(with: request) { (data:Data?, response:URLResponse?, error:Error?) in
             
             var forecastArray:[DailyWeather] = []
-            
             if let data = data {
-                
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
                         if let dailyForecasts = json["daily"] as? [String:Any] {

@@ -43,6 +43,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE0EE02D20AC707E006DB5A7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CE0EE02920AC68CA006DB5A7 /* CollectionViewCell.swift */,
+			);
+			name = Cells;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		CE52067F20AADB7000A219F3 = {
 			isa = PBXGroup;
 			children = (
@@ -63,6 +72,7 @@
 		CE52068A20AADB7100A219F3 /* Ariel */ = {
 			isa = PBXGroup;
 			children = (
+				CE0EE02D20AC707E006DB5A7 /* Cells */,
 				CE5206A120AAE31F00A219F3 /* Models */,
 				CE5206A020AAE30100A219F3 /* Controllers */,
 				CE52068F20AADB7100A219F3 /* Main.storyboard */,
@@ -94,7 +104,6 @@
 			isa = PBXGroup;
 			children = (
 				CEBA6EA220AB821F00B7EEA5 /* DailyWeather.swift */,
-				CE0EE02920AC68CA006DB5A7 /* CollectionViewCell.swift */,
 				CE0EE02B20AC6F5F006DB5A7 /* HourlyWeather.swift */,
 			);
 			path = Models;

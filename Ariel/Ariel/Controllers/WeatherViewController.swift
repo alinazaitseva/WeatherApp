@@ -17,10 +17,12 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var weatherStateLabel: UILabel!
     
     var forecastData = [DailyWeather]()
+    var hourlyData = [HourlyWeather]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateWeatherForLocation(location: "Vinnytsia")
+        updateWeatherForLocationHourly(location: "Vinnytsia")
     }
     
     func updateWeatherForLocation (location:String) {
@@ -42,6 +44,24 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+    func updateWeatherForLocationHourly (location:String) {
+        CLGeocoder().geocodeAddressString(location) { (placemarks:[CLPlacemark]?, error:Error?) in
+            if error == nil {
+                if let location = placemarks?.first?.location {
+                    HourlyWeather.forecast(withLocation: location.coordinate, completion: { (results:[HourlyWeather]?) in
+                        
+                        if let weatherData = results {
+                            self.hourlyData = weatherData
+                            
+                            DispatchQueue.main.async {
+                                self.weatherTableview.reloadData()
+                            }
+                        }
+                    })
+                }
+            }
+        }
+    }
     func numberOfSections(in tableView: UITableView) -> Int {
         return forecastData.count
     }
@@ -72,13 +92,16 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
 }
 
 extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+   
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as? CollectionViewCell else { return UICollectionViewCell() }
+        let hourlyWeatherOblect = hourlyData[indexPath.section]
+        cell.collectionLabel?.text = "\(Int(hourlyWeatherOblect.temperature)) °F"
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return  1
+        return  hourlyData.count
     }
     
 }
