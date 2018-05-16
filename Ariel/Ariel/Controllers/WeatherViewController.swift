@@ -11,7 +11,6 @@ import CoreLocation
 
 class WeatherViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var weatherTableview: UITableView!
     
     var forecastData = [Weather]()
@@ -19,14 +18,6 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         updateWeatherForLocation(location: "Vinnytsia")
-    }
-    
-   
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        if let locationString = searchBar.text, !locationString.isEmpty {
-            updateWeatherForLocation(location: locationString)
-        }
     }
     
     func updateWeatherForLocation (location:String) {
