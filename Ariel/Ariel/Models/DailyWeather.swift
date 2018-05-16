@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-struct Weather {
+struct DailyWeather {
     let summary:String
     let icon:String
     let temperature:Double
@@ -33,14 +33,14 @@ struct Weather {
     
     static let basePath = "https://api.darksky.net/forecast/2c73b2906faf137f2f19c38fc3454588/"
     
-    static func forecast (withLocation location:CLLocationCoordinate2D, completion: @escaping ([Weather]?) -> ()) {
+    static func forecast (withLocation location:CLLocationCoordinate2D, completion: @escaping ([DailyWeather]?) -> ()) {
         
         let url = basePath + "\(location.latitude),\(location.longitude)"
         let request = URLRequest(url: URL(string: url)!)
         
         let task = URLSession.shared.dataTask(with: request) { (data:Data?, response:URLResponse?, error:Error?) in
             
-            var forecastArray:[Weather] = []
+            var forecastArray:[DailyWeather] = []
             
             if let data = data {
                 
@@ -49,7 +49,7 @@ struct Weather {
                         if let dailyForecasts = json["daily"] as? [String:Any] {
                             if let dailyData = dailyForecasts["data"] as? [[String:Any]] {
                                 for dataPoint in dailyData {
-                                    if let weatherObject = try? Weather(json: dataPoint) {
+                                    if let weatherObject = try? DailyWeather(json: dataPoint) {
                                         forecastArray.append(weatherObject)
                                     }
                                 }

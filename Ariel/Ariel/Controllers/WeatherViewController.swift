@@ -9,11 +9,14 @@
 import UIKit
 import CoreLocation
 
-class WeatherViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class WeatherViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var weatherTableview: UITableView!
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var temperatureLabel: UILabel!
+    @IBOutlet weak var weatherStateLabel: UILabel!
     
-    var forecastData = [Weather]()
+    var forecastData = [DailyWeather]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +27,7 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
         CLGeocoder().geocodeAddressString(location) { (placemarks:[CLPlacemark]?, error:Error?) in
             if error == nil {
                 if let location = placemarks?.first?.location {
-                    Weather.forecast(withLocation: location.coordinate, completion: { (results:[Weather]?) in
+                    DailyWeather.forecast(withLocation: location.coordinate, completion: { (results:[DailyWeather]?) in
                         
                         if let weatherData = results {
                             self.forecastData = weatherData
@@ -61,19 +64,21 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
         cell.textLabel?.text = weatherObject.summary
         cell.detailTextLabel?.text = "\(Int(weatherObject.temperature)) °F"
         cell.imageView?.image = UIImage(named: weatherObject.icon)
-        
+        temperatureLabel.text = "\(Int(weatherObject.temperature)) °F"
+        weatherStateLabel.text = "\(weatherObject.icon)"
+        cityLabel.text = "Vinnytsia"
+        return cell
+    }
+}
+
+extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as? CollectionViewCell else { return UICollectionViewCell() }
         return cell
     }
     
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return  1
     }
-    */
-
+    
 }
