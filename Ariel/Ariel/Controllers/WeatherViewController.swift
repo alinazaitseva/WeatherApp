@@ -89,6 +89,23 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
         cityLabel.text = "Vinnytsia"
         return cell
     }
+    
+    @IBAction func addCity(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier:"modalWindow", sender: self)
+//        let vc = PopoverProgVC()
+//        vc.modalPresentationStyle = .Popover
+//        presentViewController(vc, animated: true, completion: nil)
+//        vc.popoverPresentationController?.barButtonItem = sender
+        
+    }
+    
+    override func performSegue(withIdentifier identifier: String, sender: Any?) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "CityViewController") as? CityViewController
+        performSegue(withIdentifier:"modalWindow", sender: self)
+        
+    }
+
 }
 
 extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataSource {
