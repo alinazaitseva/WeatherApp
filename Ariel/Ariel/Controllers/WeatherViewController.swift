@@ -15,8 +15,10 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
     @IBOutlet weak var weatherStateLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var forecastData = [DailyWeather]()
+    
     var hourlyData = [HourlyWeather]()
     
     override func viewDidLoad() {
@@ -50,11 +52,11 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
                 if let location = placemarks?.first?.location {
                     HourlyWeather.forecast(withLocation: location.coordinate, completion: { (results:[HourlyWeather]?) in
                         
-                        if let weatherData = results {
-                            self.hourlyData = weatherData
+                        if let weatherDataHourly = results {
+                            self.hourlyData = weatherDataHourly
                             
                             DispatchQueue.main.async {
-                                self.weatherTableview.reloadData()
+                                self.collectionView.reloadData()
                             }
                         }
                     })
@@ -96,12 +98,12 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as? CollectionViewCell else { return UICollectionViewCell() }
         let hourlyWeatherOblect = hourlyData[indexPath.section]
+        
         cell.collectionLabel?.text = "\(Int(hourlyWeatherOblect.temperature)) °F"
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return  hourlyData.count
+        return hourlyData.count
     }
-    
 }

@@ -56,6 +56,7 @@ struct DailyWeather {
                         
                     }
                 } catch {
+                    
                     print(error.localizedDescription)
                 }
                 

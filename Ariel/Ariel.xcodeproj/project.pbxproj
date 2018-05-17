@@ -15,6 +15,7 @@
 		CE52069320AADB8300A219F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE52069220AADB8300A219F3 /* Assets.xcassets */; };
 		CE52069620AADB8300A219F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE52069420AADB8300A219F3 /* LaunchScreen.storyboard */; };
 		CE52069F20AAE2F800A219F3 /* Property List.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE52069E20AAE2F800A219F3 /* Property List.plist */; };
+		CE54E2DD20AD694600B4456E /* DegreesConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE54E2DC20AD694600B4456E /* DegreesConverter.swift */; };
 		CEBA6EA320AB821F00B7EEA5 /* DailyWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBA6EA220AB821F00B7EEA5 /* DailyWeather.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		CE52069520AADB8300A219F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE52069720AADB8300A219F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE52069E20AAE2F800A219F3 /* Property List.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Property List.plist"; sourceTree = "<group>"; };
+		CE54E2DC20AD694600B4456E /* DegreesConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DegreesConverter.swift; sourceTree = "<group>"; };
 		CEBA6EA220AB821F00B7EEA5 /* DailyWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +107,7 @@
 			children = (
 				CEBA6EA220AB821F00B7EEA5 /* DailyWeather.swift */,
 				CE0EE02B20AC6F5F006DB5A7 /* HourlyWeather.swift */,
+				CE54E2DC20AD694600B4456E /* DegreesConverter.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -185,6 +188,7 @@
 				CE52068C20AADB7100A219F3 /* AppDelegate.swift in Sources */,
 				CE0EE02A20AC68CA006DB5A7 /* CollectionViewCell.swift in Sources */,
 				CE0EE02C20AC6F5F006DB5A7 /* HourlyWeather.swift in Sources */,
+				CE54E2DD20AD694600B4456E /* DegreesConverter.swift in Sources */,
 				CEBA6EA320AB821F00B7EEA5 /* DailyWeather.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

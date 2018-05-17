@@ -27,7 +27,7 @@ struct HourlyWeather {
         
         guard let time = json["time"] as? Int else {throw SerealizationError.missing("summary is missing")}
         
-        guard let temperature = json["temperatureMax"] as? Double else {throw SerealizationError.missing("temp is missing")}
+        guard let temperature = json["temperature"] as? Double else {throw SerealizationError.missing("temp is missing")}
         
         self.time = time
         self.temperature = temperature
@@ -42,7 +42,7 @@ struct HourlyWeather {
         
          let task = URLSession.shared.dataTask(with: request) { (data:Data?, response:URLResponse?, error:Error?) in
             
-            var forecastArray:[HourlyWeather] = []
+            var forecastHourlyArray:[HourlyWeather] = []
             if let data = data {
                 do {
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
@@ -50,22 +50,19 @@ struct HourlyWeather {
                             if let dailyData = dailyForecasts["data"] as? [[String:Any]] {
                                 for dataPoint in dailyData {
                                     if let weatherObject = try? HourlyWeather(json: dataPoint) {
-                                        forecastArray.append(weatherObject)
+                                        forecastHourlyArray.append(weatherObject)
                                     }
                                 }
                             }
                         }
-                        
                     }
                 } catch {
+                    
                     print(error.localizedDescription)
                 }
-                
-                completion(forecastArray)
+                completion(forecastHourlyArray)
             }
     }
       task.resume()
     }
-    
-    
 }
