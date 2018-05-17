@@ -23,9 +23,9 @@ class DegreesConverter {
     private func prepareDegrees(from: Double) -> String {
         let celsiusDegree = convertToCelsius(fahrenheit: Int(from))
         if celsiusDegree >= 0 {
-            return "+\(celsiusDegree)C"
+            return "+\(celsiusDegree)"
         } else {
-            return "\(celsiusDegree)C"
+            return "\(celsiusDegree)"
         }
     }
     

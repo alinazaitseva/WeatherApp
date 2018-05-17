@@ -10,6 +10,7 @@ import UIKit
 
 class CollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var collectionLabel: UILabel!
+    @IBOutlet weak var temperatureCollectionLabel: UILabel!
+    @IBOutlet weak var timeCollectionLabel: UILabel!
     
 }

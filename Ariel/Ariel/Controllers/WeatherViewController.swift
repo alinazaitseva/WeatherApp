@@ -80,11 +80,11 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let weatherObject = forecastData[indexPath.section]
-        let celsius = DegreesConverter(fahrenheit: weatherObject.temperature)
+        let celsiusDaily = DegreesConverter(fahrenheit: weatherObject.temperature)
         cell.textLabel?.text = weatherObject.summary
-        cell.detailTextLabel?.text = "\(Int(weatherObject.temperature))°F"
+        cell.detailTextLabel?.text = "\(celsiusDaily.convertTo)°C"
         cell.imageView?.image = UIImage(named: weatherObject.icon)
-        temperatureLabel.text = "\(celsius.convertTo)°C"
+        temperatureLabel.text = "\(celsiusDaily.convertTo)°C"
         weatherStateLabel.text = "\(weatherObject.icon)"
         cityLabel.text = "Vinnytsia"
         return cell
@@ -95,9 +95,11 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as? CollectionViewCell else { return UICollectionViewCell() }
-        let hourlyWeatherObject = hourlyData[indexPath.section]
-        
-        cell.collectionLabel?.text = "\(Int(hourlyWeatherObject.temperature))°F"
+        let hourlyWeatherObject = hourlyData[indexPath.row]
+        let celsiusHourly = DegreesConverter(fahrenheit: hourlyWeatherObject.temperature)
+     
+        cell.timeCollectionLabel?.text = "\((hourlyWeatherObject.time)/360000000) p.m"
+        cell.temperatureCollectionLabel?.text = "\(celsiusHourly.convertTo)°C"
         return cell
     }
     

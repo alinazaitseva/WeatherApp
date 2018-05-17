@@ -10,11 +10,6 @@ import Foundation
 import CoreLocation
 
 struct HourlyWeather {
-    
-    func secondsToHoursMinutesSeconds (seconds : Int) -> (Int, Int, Int) {
-        return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
-    }
-    
     let time: Int
     let temperature: Double
     
