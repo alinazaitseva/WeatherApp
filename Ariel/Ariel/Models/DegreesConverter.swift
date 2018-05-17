@@ -16,13 +16,17 @@ class DegreesConverter {
                 self.fahrenheit = fahrenheit
     }
     
-    var celsiFormat: String {
-                return prepareDegreeLabel(from: fahrenheit)
+    var convertTo: String {
+                return prepareDegrees(from: fahrenheit)
     }
     
-    private func prepareDegreeLabel(from: Double) -> String {
-                let celsi = convertToCelsius(fahrenheit: Int(from))
-                return celsi >= 0 ? "+\(celsi)C" : "\(celsi)C"
+    private func prepareDegrees(from: Double) -> String {
+        let celsiusDegree = convertToCelsius(fahrenheit: Int(from))
+        if celsiusDegree >= 0 {
+            return "+\(celsiusDegree)C"
+        } else {
+            return "\(celsiusDegree)C"
+        }
     }
     
     private func convertToCelsius(fahrenheit: Int) -> Int {

@@ -18,9 +18,8 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
     @IBOutlet weak var collectionView: UICollectionView!
     
     var forecastData = [DailyWeather]()
-    
     var hourlyData = [HourlyWeather]()
-    
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         updateWeatherForLocation(location: "Vinnytsia")
@@ -80,13 +79,12 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        
         let weatherObject = forecastData[indexPath.section]
-        
+        let celsius = DegreesConverter(fahrenheit: weatherObject.temperature)
         cell.textLabel?.text = weatherObject.summary
-        cell.detailTextLabel?.text = "\(Int(weatherObject.temperature)) °F"
+        cell.detailTextLabel?.text = "\(Int(weatherObject.temperature))°F"
         cell.imageView?.image = UIImage(named: weatherObject.icon)
-        temperatureLabel.text = "\(Int(weatherObject.temperature)) °F"
+        temperatureLabel.text = "\(celsius.convertTo)°C"
         weatherStateLabel.text = "\(weatherObject.icon)"
         cityLabel.text = "Vinnytsia"
         return cell
@@ -97,9 +95,9 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as? CollectionViewCell else { return UICollectionViewCell() }
-        let hourlyWeatherOblect = hourlyData[indexPath.section]
+        let hourlyWeatherObject = hourlyData[indexPath.section]
         
-        cell.collectionLabel?.text = "\(Int(hourlyWeatherOblect.temperature)) °F"
+        cell.collectionLabel?.text = "\(Int(hourlyWeatherObject.temperature))°F"
         return cell
     }
     

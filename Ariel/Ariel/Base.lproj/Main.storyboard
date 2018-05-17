@@ -54,24 +54,24 @@
                                 </connections>
                             </tableView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="GUD-wQ-wtJ">
-                                <rect key="frame" x="0.0" y="189" width="375" height="105"/>
-                                <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="0.096104452054794523" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="214" width="375" height="75"/>
+                                <color key="backgroundColor" red="1" green="0.83234566450000003" blue="0.47320586440000001" alpha="0.14776862157534246" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5Yq-Dg-eRw">
-                                    <size key="itemSize" width="51" height="105"/>
+                                    <size key="itemSize" width="51" height="73"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCell" id="igB-5Q-8cW" customClass="CollectionViewCell" customModule="Ariel" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="51" height="105"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="51" height="73"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="51" height="105"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="51" height="73"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmG-Yy-6Hj">
-                                                    <rect key="frame" x="0.0" y="0.0" width="51" height="105"/>
+                                                    <rect key="frame" x="7" y="5" width="41" height="63"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -79,10 +79,10 @@
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="cmG-Yy-6Hj" firstAttribute="leading" secondItem="igB-5Q-8cW" secondAttribute="leading" id="3zP-jv-J8h"/>
-                                            <constraint firstItem="cmG-Yy-6Hj" firstAttribute="top" secondItem="igB-5Q-8cW" secondAttribute="top" id="EWZ-6o-Pfn"/>
-                                            <constraint firstAttribute="bottom" secondItem="cmG-Yy-6Hj" secondAttribute="bottom" id="MwR-WY-MYS"/>
-                                            <constraint firstAttribute="trailing" secondItem="cmG-Yy-6Hj" secondAttribute="trailing" id="pSm-hG-JwI"/>
+                                            <constraint firstItem="cmG-Yy-6Hj" firstAttribute="top" secondItem="igB-5Q-8cW" secondAttribute="top" constant="5" id="Izf-CS-Tlk"/>
+                                            <constraint firstItem="cmG-Yy-6Hj" firstAttribute="leading" secondItem="igB-5Q-8cW" secondAttribute="leading" constant="7" id="TZn-XB-hPg"/>
+                                            <constraint firstAttribute="bottom" secondItem="cmG-Yy-6Hj" secondAttribute="bottom" constant="5" id="Tja-Yk-BzH"/>
+                                            <constraint firstAttribute="trailing" secondItem="cmG-Yy-6Hj" secondAttribute="trailing" constant="3" id="dH9-Cy-J7V"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="collectionLabel" destination="cmG-Yy-6Hj" id="gVf-77-AXd"/>
@@ -121,15 +121,17 @@
                             <constraint firstItem="FnW-DB-FUL" firstAttribute="leading" secondItem="e8s-fO-9Jn" secondAttribute="leading" id="993-cr-Rsp"/>
                             <constraint firstItem="GUD-wQ-wtJ" firstAttribute="trailing" secondItem="e8s-fO-9Jn" secondAttribute="trailing" id="KSQ-QY-Gig"/>
                             <constraint firstItem="FnW-DB-FUL" firstAttribute="trailing" secondItem="e8s-fO-9Jn" secondAttribute="trailing" id="bHe-CM-7A5"/>
-                            <constraint firstItem="FnW-DB-FUL" firstAttribute="top" secondItem="GUD-wQ-wtJ" secondAttribute="bottom" id="efu-bh-Ts1"/>
+                            <constraint firstItem="FnW-DB-FUL" firstAttribute="top" secondItem="GUD-wQ-wtJ" secondAttribute="bottom" constant="5" id="efu-bh-Ts1"/>
                             <constraint firstItem="GUD-wQ-wtJ" firstAttribute="leading" secondItem="e8s-fO-9Jn" secondAttribute="leading" id="gAE-8h-Fnl"/>
                             <constraint firstItem="FnW-DB-FUL" firstAttribute="top" secondItem="e8s-fO-9Jn" secondAttribute="top" constant="230" id="k6U-eL-od9"/>
                             <constraint firstItem="FnW-DB-FUL" firstAttribute="bottom" secondItem="e8s-fO-9Jn" secondAttribute="bottom" id="vQ8-TR-6G6"/>
-                            <constraint firstItem="GUD-wQ-wtJ" firstAttribute="top" secondItem="e8s-fO-9Jn" secondAttribute="top" constant="125" id="zQD-6M-d6y"/>
+                            <constraint firstItem="GUD-wQ-wtJ" firstAttribute="top" secondItem="e8s-fO-9Jn" secondAttribute="top" constant="150" id="zQD-6M-d6y"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e8s-fO-9Jn"/>
                     </view>
-                    <navigationItem key="navigationItem" id="9w8-gI-DUm"/>
+                    <navigationItem key="navigationItem" id="9w8-gI-DUm">
+                        <barButtonItem key="rightBarButtonItem" title="Add" springLoaded="YES" id="eCL-qF-T47"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="cityLabel" destination="RMk-JB-Zo0" id="lY0-iR-Qat"/>
                         <outlet property="collectionView" destination="GUD-wQ-wtJ" id="xi3-hv-cP4"/>
