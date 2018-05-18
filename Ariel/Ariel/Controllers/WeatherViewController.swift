@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import MapKit
 
 class WeatherViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
@@ -21,18 +22,25 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
     var forecastData = [DailyWeather]()
     var hourlyData = [HourlyWeather]()
     let limitHours = 24.00
+    let locationManager = CLLocationManager()
   
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
         updateWeatherForLocation(location: "Vinnytsia")
         updateWeatherForLocationHourly(location: "Vinnytsia")
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+//        locationManager.requestLocation()
     }
-     
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         if let locationString = searchBar.text, !locationString.isEmpty {
             updateWeatherForLocation(location: locationString)
+            updateWeatherForLocationHourly(location: locationString)
+            print(locationString)
         }
     }
     
@@ -43,6 +51,7 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
                     DailyWeather.forecast(withLocation: location.coordinate, completion: { (results:[DailyWeather]?) in
                         if let weatherData = results {
                             self.forecastData = weatherData
+                            print(weatherData)
                             DispatchQueue.main.async {
                                 self.weatherTableview.reloadData()
                             }
@@ -125,5 +134,23 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             return hourlyData.count
+    }
+}
+
+extension WeatherViewController: CLLocationManagerDelegate {
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse {
+            locationManager.requestLocation()
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let location = locations.first {
+            print("location:: (location)")
+        }
+    }
+    
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+        print("error:: (error)")
     }
 }
