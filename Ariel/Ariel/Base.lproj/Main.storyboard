@@ -217,6 +217,7 @@
                         <viewLayoutGuide key="safeArea" id="az9-ND-Rza"/>
                     </view>
                     <connections>
+                        <outlet property="mapView" destination="nHy-Vw-prU" id="aOZ-EK-jnE"/>
                         <outlet property="searchBar" destination="05b-It-FTk" id="BTf-XA-MaV"/>
                         <outlet property="searchDisplayController" destination="eXq-9i-jgS" id="viM-Y2-Xz5"/>
                     </connections>
