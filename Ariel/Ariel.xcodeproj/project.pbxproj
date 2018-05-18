@@ -104,8 +104,8 @@
 		CE5206A020AAE30100A219F3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CE0EE01D20AC20D9006DB5A7 /* WeatherViewController.swift */,
 				CE54E2E320ADCE1F00B4456E /* PageViewController.swift */,
+				CE0EE01D20AC20D9006DB5A7 /* WeatherViewController.swift */,
 				CE54E2DE20ADB15E00B4456E /* CityViewController.swift */,
 			);
 			path = Controllers;
@@ -354,7 +354,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PQ4JD7QCGM;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Ariel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -372,7 +372,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = PQ4JD7QCGM;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Ariel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

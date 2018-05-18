@@ -9,8 +9,9 @@
 import UIKit
 import CoreLocation
 
-class WeatherViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class WeatherViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var weatherTableview: UITableView!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -23,8 +24,16 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
         updateWeatherForLocation(location: "Vinnytsia")
         updateWeatherForLocationHourly(location: "Vinnytsia")
+    }
+     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+        if let locationString = searchBar.text, !locationString.isEmpty {
+            updateWeatherForLocation(location: locationString)
+        }
     }
     
     func updateWeatherForLocation (location:String) {
@@ -111,12 +120,6 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
      
         cell.timeCollectionLabel?.text = "\(hourlyWeatherObject.time)"
         cell.temperatureCollectionLabel?.text = "\(celsiusHourly.convertTo)°C"
-//        cell.layer.borderColor = UIColor.black.cgColor
-//        cell.layer.borderWidth = 1
-//        cell.layer.cornerRadius = 4
-//        cell.layer.masksToBounds = true
-//        cell.layer.shadowOpacity = 0.18
-//        cell.backgroundColor = UIColor.white
         return cell
     }
     
