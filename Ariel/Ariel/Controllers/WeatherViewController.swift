@@ -19,6 +19,7 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var forecastData = [DailyWeather]()
     var hourlyData = [HourlyWeather]()
+    let limitHours = 24.00
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,10 +32,8 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
             if error == nil {
                 if let location = placemarks?.first?.location {
                     DailyWeather.forecast(withLocation: location.coordinate, completion: { (results:[DailyWeather]?) in
-                        
                         if let weatherData = results {
                             self.forecastData = weatherData
-                            
                             DispatchQueue.main.async {
                                 self.weatherTableview.reloadData()
                             }
@@ -50,10 +49,8 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
             if error == nil {
                 if let location = placemarks?.first?.location {
                     HourlyWeather.forecast(withLocation: location.coordinate, completion: { (results:[HourlyWeather]?) in
-                        
                         if let weatherDataHourly = results {
                             self.hourlyData = weatherDataHourly
-                            
                             DispatchQueue.main.async {
                                 self.collectionView.reloadData()
                             }
@@ -96,16 +93,13 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
 //        vc.modalPresentationStyle = .Popover
 //        presentViewController(vc, animated: true, completion: nil)
 //        vc.popoverPresentationController?.barButtonItem = sender
-        
     }
     
     override func performSegue(withIdentifier identifier: String, sender: Any?) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "CityViewController") as? CityViewController
+        _ = storyboard.instantiateViewController(withIdentifier: "CityViewController") as? CityViewController
         performSegue(withIdentifier:"modalWindow", sender: self)
-        
     }
-
 }
 
 extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -115,12 +109,18 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
         let hourlyWeatherObject = hourlyData[indexPath.row]
         let celsiusHourly = DegreesConverter(fahrenheit: hourlyWeatherObject.temperature)
      
-        cell.timeCollectionLabel?.text = "\((hourlyWeatherObject.time)/360000000) p.m"
+        cell.timeCollectionLabel?.text = "\(hourlyWeatherObject.time)"
         cell.temperatureCollectionLabel?.text = "\(celsiusHourly.convertTo)°C"
+//        cell.layer.borderColor = UIColor.black.cgColor
+//        cell.layer.borderWidth = 1
+//        cell.layer.cornerRadius = 4
+//        cell.layer.masksToBounds = true
+//        cell.layer.shadowOpacity = 0.18
+//        cell.backgroundColor = UIColor.white
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return hourlyData.count
+            return hourlyData.count
     }
 }
