@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class WeatherViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class WeatherViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var weatherTableview: UITableView!
@@ -21,13 +21,34 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
     
     var forecastData = [DailyWeather]()
     var hourlyData = [HourlyWeather]()
-    let limitHours = 24.00
-
+    let locationManager = CLLocationManager()
+    var city: String = "" {
+        didSet {
+            self.cityLabel.text = self.city
+        }
+    }
+    var cityName: String?
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        updateWeatherForLocation(location: "Vinnytsia")
-        updateWeatherForLocationHourly(location: "Vinnytsia")
+        
+        if cityName != nil {
+        updateWeatherForLocation(location: self.cityName!)
+        updateWeatherForLocationHourly(location: self.cityName!)
+        } else {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+            
+            lookUpCurrentLocation { (placemark) in
+                guard let locality: String = placemark?.locality else { return }
+                self.cityName = locality
+                self.updateWeatherForLocation(location: locality)
+                self.updateWeatherForLocationHourly(location: locality)
+                print(locality)
+            }
+        }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -38,13 +59,31 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
+func lookUpCurrentLocation(completionHandler: @escaping (CLPlacemark?) -> Void ) {
+            if let lastLocation = self.locationManager.location {
+                    let geocoder = CLGeocoder()
+                    geocoder.reverseGeocodeLocation(lastLocation, completionHandler: { (placemarks, error) in
+                        if error == nil {
+                            let firstLocation = placemarks?.first
+                            completionHandler(firstLocation)
+                        } else {
+                            completionHandler(nil)
+                        }
+                    })
+                } else {
+                    completionHandler(nil)
+                }
+        }
+
     func updateWeatherForLocation (location:String) {
+        let currentLocation = location
         CLGeocoder().geocodeAddressString(location) { (placemarks:[CLPlacemark]?, error:Error?) in
             if error == nil {
                 if let location = placemarks?.first?.location {
                     DailyWeather.forecast(withLocation: location.coordinate, completion: { (results:[DailyWeather]?) in
                         if let weatherData = results {
                             self.forecastData = weatherData
+                            self.cityName = currentLocation
                             DispatchQueue.main.async {
                                 self.weatherTableview.reloadData()
                             }
@@ -71,6 +110,7 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
             }
         }
     }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return forecastData.count
     }
@@ -89,21 +129,19 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let weatherObject = forecastData[indexPath.section]
         let celsiusDaily = DegreesConverter(fahrenheit: weatherObject.temperature)
+        
         cell.textLabel?.text = weatherObject.summary
         cell.detailTextLabel?.text = "\(celsiusDaily.convertTo)°C"
         cell.imageView?.image = UIImage(named: weatherObject.icon)
+        
         temperatureLabel.text = "\(celsiusDaily.convertTo)°C"
         weatherStateLabel.text = "\(weatherObject.icon)"
-        cityLabel.text = "Vinnytsia"
+        cityLabel.text = cityName
         return cell
     }
     
     @IBAction func addCity(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier:"modalWindow", sender: self)
-//        let vc = PopoverProgVC()
-//        vc.modalPresentationStyle = .Popover
-//        presentViewController(vc, animated: true, completion: nil)
-//        vc.popoverPresentationController?.barButtonItem = sender
     }
     
     override func performSegue(withIdentifier identifier: String, sender: Any?) {
@@ -111,6 +149,7 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
         _ = storyboard.instantiateViewController(withIdentifier: "CityViewController") as? CityViewController
         performSegue(withIdentifier:"modalWindow", sender: self)
     }
+    
 }
 
 extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -118,9 +157,11 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as? CollectionViewCell else { return UICollectionViewCell() }
         let hourlyWeatherObject = hourlyData[indexPath.row]
+        
         let celsiusHourly = DegreesConverter(fahrenheit: hourlyWeatherObject.temperature)
+        let hours = ForecastDateTime(hourlyWeatherObject.time)
      
-        cell.timeCollectionLabel?.text = "\(hourlyWeatherObject.time)"
+        cell.timeCollectionLabel?.text = "\(hours.shortTime)"
         cell.temperatureCollectionLabel?.text = "\(celsiusHourly.convertTo)°C"
         return cell
     }

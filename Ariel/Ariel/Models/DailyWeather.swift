@@ -53,17 +53,14 @@ struct DailyWeather {
                                 }
                             }
                         }
-                        
                     }
                 } catch {
                     
                     print(error.localizedDescription)
                 }
-                
                 completion(forecastArray)
             }
         }
-        
         task.resume()
         
     }

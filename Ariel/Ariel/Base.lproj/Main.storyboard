@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dUh-RR-fU3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nzQ-Ih-6XI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -139,16 +139,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="e8s-fO-9Jn"/>
                     </view>
-                    <navigationItem key="navigationItem" id="9w8-gI-DUm">
-                        <barButtonItem key="rightBarButtonItem" title="Add" springLoaded="YES" id="eCL-qF-T47">
-                            <connections>
-                                <action selector="addCity:" destination="m4K-w8-71S" id="pz0-q1-A2r"/>
-                                <segue destination="JPl-Ge-TsX" kind="popoverPresentation" identifier="modalWindow" popoverAnchorBarButtonItem="eCL-qF-T47" id="57z-fV-BIP">
-                                    <popoverArrowDirection key="popoverArrowDirection" left="YES"/>
-                                </segue>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="9w8-gI-DUm"/>
                     <connections>
                         <outlet property="cityLabel" destination="RMk-JB-Zo0" id="lY0-iR-Qat"/>
                         <outlet property="collectionView" destination="GUD-wQ-wtJ" id="xi3-hv-cP4"/>

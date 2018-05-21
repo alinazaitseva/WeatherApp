@@ -21,7 +21,7 @@ class DegreesConverter {
     }
     
     private func prepareDegrees(from: Double) -> String {
-        let celsiusDegree = convertToCelsius(fahrenheit: Int(from))
+        let celsiusDegree = convertToCelsius(fahrenheit: from)
         if celsiusDegree >= 0 {
             return "+\(celsiusDegree)"
         } else {
@@ -29,7 +29,7 @@ class DegreesConverter {
         }
     }
     
-    private func convertToCelsius(fahrenheit: Int) -> Int {
+    private func convertToCelsius(fahrenheit: Double) -> Int {
                 return Int(5.0 / 9.0 * (Double(fahrenheit) - 32.0))
         
     }
