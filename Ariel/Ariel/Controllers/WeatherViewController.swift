@@ -28,25 +28,25 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     var cityName: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
         
         if cityName != nil {
         updateWeatherForLocation(location: self.cityName!)
         updateWeatherForLocationHourly(location: self.cityName!)
         } else {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
-            
             lookUpCurrentLocation { (placemark) in
                 guard let locality: String = placemark?.locality else { return }
                 self.cityName = locality
                 self.updateWeatherForLocation(location: locality)
                 self.updateWeatherForLocationHourly(location: locality)
-                print(locality)
             }
         }
     }

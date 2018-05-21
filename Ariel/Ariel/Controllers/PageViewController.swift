@@ -20,7 +20,7 @@ class PageViewController: UIPageViewController {
     fileprivate func getViewController(withIdentifier identifier: String, locationString: String?) -> UIViewController{
         let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: identifier)
         guard let weatherController = controller as? WeatherViewController else { return controller }
-        weatherController.cityName = locationString // TODO:
+        weatherController.cityName = locationString
         return weatherController
     }
 
