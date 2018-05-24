@@ -59,7 +59,7 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
         }
     }
     
-func lookUpCurrentLocation(completionHandler: @escaping (CLPlacemark?) -> Void ) {
+    func lookUpCurrentLocation(completionHandler: @escaping (CLPlacemark?) -> Void ) {
             if let lastLocation = self.locationManager.location {
                     let geocoder = CLGeocoder()
                     geocoder.reverseGeocodeLocation(lastLocation, completionHandler: { (placemarks, error) in
@@ -149,18 +149,14 @@ func lookUpCurrentLocation(completionHandler: @escaping (CLPlacemark?) -> Void )
         _ = storyboard.instantiateViewController(withIdentifier: "CityViewController") as? CityViewController
         performSegue(withIdentifier:"modalWindow", sender: self)
     }
-    
 }
 
 extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-   
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as? CollectionViewCell else { return UICollectionViewCell() }
         let hourlyWeatherObject = hourlyData[indexPath.row]
-        
         let celsiusHourly = DegreesConverter(fahrenheit: hourlyWeatherObject.temperature)
         let hours = ForecastDateTime(hourlyWeatherObject.time)
-     
         cell.timeCollectionLabel?.text = "\(hours.shortTime)"
         cell.temperatureCollectionLabel?.text = "\(celsiusHourly.convertTo)°C"
         return cell

@@ -130,7 +130,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="highlightedColor" red="0.016804177310000001" green="0.19835099580000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </label>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1iQ-w0-2tH">
+                            <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" placeholder="Vinnitsya" translatesAutoresizingMaskIntoConstraints="NO" id="1iQ-w0-2tH">
                                 <rect key="frame" x="0.0" y="64" width="375" height="56"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -139,7 +139,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="e8s-fO-9Jn"/>
                     </view>
-                    <navigationItem key="navigationItem" id="9w8-gI-DUm"/>
+                    <navigationItem key="navigationItem" id="9w8-gI-DUm">
+                        <barButtonItem key="rightBarButtonItem" title="Add" springLoaded="YES" id="eCL-qF-T47">
+                            <connections>
+                                <action selector="addCity:" destination="m4K-w8-71S" id="pz0-q1-A2r"/>
+                                <segue destination="JPl-Ge-TsX" kind="popoverPresentation" identifier="modalWindow" popoverAnchorBarButtonItem="eCL-qF-T47" id="57z-fV-BIP">
+                                    <popoverArrowDirection key="popoverArrowDirection" left="YES"/>
+                                </segue>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="cityLabel" destination="RMk-JB-Zo0" id="lY0-iR-Qat"/>
                         <outlet property="collectionView" destination="GUD-wQ-wtJ" id="xi3-hv-cP4"/>
@@ -169,14 +178,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nHy-Vw-prU">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Image-1" translatesAutoresizingMaskIntoConstraints="NO" id="yJq-uH-WBw">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="JPl-Ge-TsX" id="6yC-Hx-W5d"/>
-                                </connections>
-                            </mapView>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="05b-It-FTk">
+                            </imageView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" placeholder="Vinnitsya" translatesAutoresizingMaskIntoConstraints="NO" id="05b-It-FTk">
                                 <rect key="frame" x="0.0" y="48" width="375" height="56"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -184,8 +190,8 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g3O-8H-6Yn">
                                 <rect key="frame" x="282" y="120" width="77" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="tintColor" red="0.45138680930000002" green="0.99309605359999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Dissmis"/>
                                 <state key="highlighted">
                                     <color key="titleColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -197,10 +203,13 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ezv-EQ-qGs">
                                 <rect key="frame" x="37" y="124" width="22" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.45138680930000002" green="0.99309605359999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="highlighted">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="addCity:" destination="JPl-Ge-TsX" eventType="touchUpInside" id="9ug-bC-wmy"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -208,8 +217,8 @@
                         <viewLayoutGuide key="safeArea" id="az9-ND-Rza"/>
                     </view>
                     <connections>
-                        <outlet property="mapView" destination="nHy-Vw-prU" id="aOZ-EK-jnE"/>
-                        <outlet property="searchBar" destination="05b-It-FTk" id="BTf-XA-MaV"/>
+                        <outlet property="searchBar" destination="05b-It-FTk" id="bAv-bv-Ffq"/>
+                        <outlet property="searchCityBar" destination="05b-It-FTk" id="BTf-XA-MaV"/>
                         <outlet property="searchDisplayController" destination="eXq-9i-jgS" id="viM-Y2-Xz5"/>
                     </connections>
                 </viewController>
@@ -246,5 +255,6 @@
     </scenes>
     <resources>
         <image name="Image" width="640" height="1136"/>
+        <image name="Image-1" width="1440" height="2960"/>
     </resources>
 </document>

@@ -14,7 +14,6 @@ class ForecastDateTime {
     init(_ date: Int) {
         rawDate = date
     }
-    
     var shortTime: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"

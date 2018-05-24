@@ -10,29 +10,49 @@ import UIKit
 import CoreLocation
 import MapKit
 
+class CityViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate {
 
-class CityViewController: UIViewController, UISearchBarDelegate {
-
-    @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var searchBar: UISearchBar!
     let locationManager = CLLocationManager()
+    var cityManager = CityModel()
+    var mainManager = WeatherViewController()
+    var pageViewController: PageViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        let coordinate:CLLocationCoordinate2D =
-            CLLocationCoordinate2D(latitude: 34.03, longitude: 118.14)
-        let span = MKCoordinateSpanMake(100, 80)
-        let region = MKCoordinateRegionMake(coordinate, span)
-        self.mapView.setRegion(region, animated: true)
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        if mainManager.cityName != nil {
+            mainManager.updateWeatherForLocationHourly(location: self.mainManager.cityName!)
+            mainManager.updateWeatherForLocation(location: self.mainManager.cityName!)
+        } else {
+            mainManager.lookUpCurrentLocation { (placemark) in
+                guard let locality:  String = placemark?.locality else { return }
+                self.mainManager.cityName = locality
+                self.mainManager.updateWeatherForLocation(location: locality)
+                self.mainManager.updateWeatherForLocationHourly(location: locality)
+            }
+        }
     }
     
     @IBAction func dissmis(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
-        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        if let locationString = searchBar.text, !locationString.isEmpty {
+            mainManager.updateWeatherForLocation(location: locationString)
+            mainManager.updateWeatherForLocationHourly(location: locationString)
+        }
+    }
+    
+    @IBAction func addCity(_ sender: UIButton) {
+    
     }
 }
