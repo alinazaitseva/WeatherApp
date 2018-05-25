@@ -225,7 +225,6 @@
                     </view>
                     <connections>
                         <outlet property="searchBar" destination="05b-It-FTk" id="bAv-bv-Ffq"/>
-                        <outlet property="searchCityBar" destination="05b-It-FTk" id="BTf-XA-MaV"/>
                         <outlet property="searchDisplayController" destination="eXq-9i-jgS" id="viM-Y2-Xz5"/>
                     </connections>
                 </viewController>
