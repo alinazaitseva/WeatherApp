@@ -15,29 +15,13 @@ class CityViewController: UIViewController, UISearchBarDelegate, CLLocationManag
     @IBOutlet weak var searchBar: UISearchBar!
     let locationManager = CLLocationManager()
     var cityManager = CityModel()
-    var mainManager = WeatherViewController()
-    var pageViewController: PageViewController?
+    var weatherManager = WeatherViewController()
+    var delegate: PageViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-        
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-        
-        if mainManager.cityName != nil {
-            mainManager.updateWeatherForLocationHourly(location: self.mainManager.cityName!)
-            mainManager.updateWeatherForLocation(location: self.mainManager.cityName!)
-        } else {
-            mainManager.lookUpCurrentLocation { (placemark) in
-                guard let locality:  String = placemark?.locality else { return }
-                self.mainManager.cityName = locality
-                self.mainManager.updateWeatherForLocation(location: locality)
-                self.mainManager.updateWeatherForLocationHourly(location: locality)
-            }
-        }
+
     }
     
     @IBAction func dissmis(_ sender: UIButton) {
@@ -47,12 +31,16 @@ class CityViewController: UIViewController, UISearchBarDelegate, CLLocationManag
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         if let locationString = searchBar.text, !locationString.isEmpty {
-            mainManager.updateWeatherForLocation(location: locationString)
-            mainManager.updateWeatherForLocationHourly(location: locationString)
+            guard let connection = delegate else { return }
+            connection.cityManager.addCity(locationString)
+            connection.orderedController = connection.addPage()
+            connection.setViewControllers([connection.orderedController.last!], direction: .forward, animated: true, completion: nil)
         }
     }
     
     @IBAction func addCity(_ sender: UIButton) {
-    
+        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CityViewController") as? CityViewController else { return }
+        vc.delegate = self
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }

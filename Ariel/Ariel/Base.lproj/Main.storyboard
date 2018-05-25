@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nzQ-Ih-6XI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6fj-Pb-VwO">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -165,10 +165,23 @@
         <!--Page View Controller-->
         <scene sceneID="sJs-nU-xhO">
             <objects>
-                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="nzQ-Ih-6XI" customClass="PageViewController" customModule="Ariel" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="nzQ-Ih-6XI" customClass="PageViewController" customModule="Ariel" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="gje-2r-KFc">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="4Ja-Zy-xsT">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="W6w-Ec-T8s">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add"/>
+                            </button>
+                            <connections>
+                                <action selector="addCity:" destination="nzQ-Ih-6XI" id="hCI-7B-Mci"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nld-Po-oOu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-57" y="133"/>
+            <point key="canvasLocation" x="1049" y="161"/>
         </scene>
         <!--City View Controller-->
         <scene sceneID="2MP-g1-ksF">
@@ -235,22 +248,22 @@
             <point key="canvasLocation" x="1056.8" y="850.52473763118451"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="fIg-Ru-aQu">
+        <scene sceneID="OfF-Jx-FJv">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dUh-RR-fU3" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6fj-Pb-VwO" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="YKu-gT-mbw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="C9B-Eh-qfW">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="m4K-w8-71S" kind="relationship" relationship="rootViewController" id="FCN-yz-5UX"/>
+                        <segue destination="nzQ-Ih-6XI" kind="relationship" relationship="rootViewController" id="JsP-w0-hLb"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="inm-b8-JLF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pdk-IH-H3N" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-434" y="851"/>
+            <point key="canvasLocation" x="321" y="161"/>
         </scene>
     </scenes>
     <resources>

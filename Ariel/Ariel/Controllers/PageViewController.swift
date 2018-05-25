@@ -10,29 +10,50 @@ import UIKit
 
 class PageViewController: UIPageViewController {
     
-    var cityManager = CityModel()
-    let identifier = "WeatherViewController"
+    let identifierR = "WeatherViewController"
     var pageControl = UIPageControl()
+    var cityManager = CityModel()
 
-    fileprivate lazy var pages: [UIViewController] = {
-        return [
-            self.getViewController(withIdentifier: "WeatherViewController", locationString: nil),
-            self.getViewController(withIdentifier: "WeatherViewController", locationString: "Kyiv")
-        ]
+    lazy var orderedController: [UIViewController] = {
+       var pages = [self.getViewController(withLocationString: nil),
+                    self.getViewController(withLocationString: "Lviv")]
+        for city in cityManager.cities {
+            pages.append(self.getViewController(withLocationString: city))
+        }
+        return pages
     }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.dataSource = self
         self.delegate = self
-        if let firstVC = pages.first {
-            setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
+        if let firstVC = orderedController.first {
+            setViewControllers([firstVC],
+                               direction: .forward,
+                               animated: true,
+                               completion: nil)
         }
         configurePagecontrol()
     }
     
-    fileprivate func getViewController(withIdentifier identifier: String, locationString: String?) -> UIViewController{
-        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: identifier)
+    @IBAction func addCity(_ sender: UIBarButtonItem) {
+        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CityViewController") as? CityViewController else { return }
+//               vc.delegate = self
+            self.navigationController?.pushViewController(vc, animated: true)
+    }
+    func addPage() -> [UIViewController] {
+        let data = self.cityManager
+        if cityManager.isDoingOperation || cityManager.addedCity {
+            cityManager.isDoingOperation = false
+            cityManager.previousCity = cityManager.cityAmount
+            for index in 0..<data.cityAmount {
+                orderedController.append(self.getViewController(withLocationString: data.cities[index]))
+            }
+        }
+        return orderedController
+    }
+    
+    fileprivate func getViewController(withLocationString locationString: String?) -> UIViewController{
+        let controller = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: identifierR)
         guard let weatherController = controller as? WeatherViewController else { return controller }
         weatherController.cityName = locationString
         return weatherController
@@ -40,7 +61,7 @@ class PageViewController: UIPageViewController {
     
     func configurePagecontrol() {
         pageControl = UIPageControl(frame: CGRect(x: 0, y: UIScreen.main.bounds.maxY - 50, width: UIScreen.main.bounds.width, height: 50))
-        pageControl.numberOfPages = pages.count
+        pageControl.numberOfPages = orderedController.count
         pageControl.currentPage = 0
         pageControl.tintColor = UIColor.black
         pageControl.pageIndicatorTintColor = UIColor.white
@@ -51,18 +72,18 @@ class PageViewController: UIPageViewController {
 
 extension PageViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = pages.index(of: viewController) else { return nil }
+        guard let viewControllerIndex = orderedController.index(of: viewController) else { return nil }
         let previousIndex = viewControllerIndex - 1
-        guard previousIndex >= 0  else { return pages.first }
-//        guard pages.count > previousIndex else { return nil}
-        return pages[previousIndex]
+        guard previousIndex >= 0  else { return nil }
+        guard orderedController.count > previousIndex else { return nil}
+        return orderedController[previousIndex]
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = pages.index(of: viewController) else { return nil }
+        guard let viewControllerIndex = orderedController.index(of: viewController) else { return nil }
         let nextIndex = viewControllerIndex + 1
-        guard nextIndex != pages.count else { return pages.first }
-//        guard pages.count > nextIndex else { return nil }
-        return pages[nextIndex]
+        guard nextIndex != orderedController.count else { return nil }
+        guard orderedController.count > nextIndex else { return nil }
+        return orderedController[nextIndex]
     }
 }

@@ -11,21 +11,29 @@ import Foundation
 class CityModel {
     
     var cities: [String] = []
+    var previousCity = 0
+    var isDoingOperation = true
+    var lastCity: Int {
+        return self.cities.count
+    }
     
     var cityAmount: Int {
         return self.cities.count
     }
+    var addedCity: Bool {
+        return previousCity < cityAmount
+    }
     
-    func isNotDuplicatedCity(_ newCity: String) -> Bool {
+    func isNotRepeatedCity(_ newCity: String) -> Bool {
             for city in self.cities {
                     if city == newCity {
-                            return false
-                        }
+                        return false
                 }
+            }
             return true
-        }
+    }
     func addCity(_ city: String) {
-        if isNotDuplicatedCity(city) {
+        if isNotRepeatedCity(city) {
             self.cities.append(city)
         }
     }

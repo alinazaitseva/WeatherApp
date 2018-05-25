@@ -29,7 +29,6 @@ struct HourlyWeather {
     }
     
     static let basePath = "https://api.darksky.net/forecast/2c73b2906faf137f2f19c38fc3454588/"
-    
     static func forecast (withLocation location:CLLocationCoordinate2D, completion: @escaping ([HourlyWeather]?) -> ()) {
         
         let url = basePath + "\(location.latitude),\(location.longitude)"
