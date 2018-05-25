@@ -27,17 +27,14 @@ class PageViewController: UIPageViewController {
         self.dataSource = self
         self.delegate = self
         if let firstVC = orderedController.first {
-            setViewControllers([firstVC],
-                               direction: .forward,
-                               animated: true,
-                               completion: nil)
+            setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
         }
         configurePagecontrol()
     }
     
     @IBAction func addCity(_ sender: UIBarButtonItem) {
         guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CityViewController") as? CityViewController else { return }
-//               vc.delegate = self
+            vc.delegate = self
             self.navigationController?.pushViewController(vc, animated: true)
     }
     func addPage() -> [UIViewController] {

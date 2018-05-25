@@ -21,7 +21,6 @@ class CityViewController: UIViewController, UISearchBarDelegate, CLLocationManag
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-
     }
     
     @IBAction func dissmis(_ sender: UIButton) {
@@ -37,10 +36,5 @@ class CityViewController: UIViewController, UISearchBarDelegate, CLLocationManag
             connection.setViewControllers([connection.orderedController.last!], direction: .forward, animated: true, completion: nil)
         }
     }
-    
-    @IBAction func addCity(_ sender: UIButton) {
-        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CityViewController") as? CityViewController else { return }
-        vc.delegate = self
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
+
 }
