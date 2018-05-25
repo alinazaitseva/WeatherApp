@@ -140,9 +140,9 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
         return cell
     }
     
-    @IBAction func addCity(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier:"modalWindow", sender: self)
-    }
+//    @IBAction func addCity(_ sender: UIBarButtonItem) {
+//        performSegue(withIdentifier:"modalWindow", sender: self)
+//    }
     
     override func performSegue(withIdentifier identifier: String, sender: Any?) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)

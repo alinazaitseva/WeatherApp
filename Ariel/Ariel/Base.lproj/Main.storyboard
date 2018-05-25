@@ -143,9 +143,6 @@
                         <barButtonItem key="rightBarButtonItem" title="Add" springLoaded="YES" id="eCL-qF-T47">
                             <connections>
                                 <action selector="addCity:" destination="m4K-w8-71S" id="pz0-q1-A2r"/>
-                                <segue destination="JPl-Ge-TsX" kind="popoverPresentation" identifier="modalWindow" popoverAnchorBarButtonItem="eCL-qF-T47" id="57z-fV-BIP">
-                                    <popoverArrowDirection key="popoverArrowDirection" left="YES"/>
-                                </segue>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -172,10 +169,10 @@
                                 <rect key="frame" x="276" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="addButton:" destination="nzQ-Ih-6XI" eventType="touchUpInside" id="U17-UA-J0Z"/>
+                                </connections>
                             </button>
-                            <connections>
-                                <action selector="addCity:" destination="nzQ-Ih-6XI" id="hCI-7B-Mci"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
                 </pageViewController>
@@ -191,10 +188,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Image-1" translatesAutoresizingMaskIntoConstraints="NO" id="yJq-uH-WBw">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" placeholder="Vinnitsya" translatesAutoresizingMaskIntoConstraints="NO" id="05b-It-FTk">
                                 <rect key="frame" x="0.0" y="48" width="375" height="56"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -220,10 +213,11 @@
                                 <state key="highlighted">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
-                                <connections>
-                                    <action selector="addCity:" destination="JPl-Ge-TsX" eventType="touchUpInside" id="9ug-bC-wmy"/>
-                                </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Image-1" translatesAutoresizingMaskIntoConstraints="NO" id="yJq-uH-WBw">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <rect key="contentStretch" x="0.0" y="0.0" width="0.5" height="0.5"/>
@@ -245,7 +239,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1056.8" y="850.52473763118451"/>
+            <point key="canvasLocation" x="1020" y="851"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OfF-Jx-FJv">
