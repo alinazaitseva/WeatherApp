@@ -39,10 +39,11 @@ struct HourlyWeather {
             var forecastHourlyArray:[HourlyWeather] = []
             if let data = data {
                 do {
+                    let dayHour = 12
                     if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String:Any] {
-                        if let dailyForecasts = json["hourly"] as? [String:Any] {
-                            if let dailyData = dailyForecasts["data"] as? [[String:Any]] {
-                                for dataPoint in dailyData {
+                        if let hourlyForecasts = json["hourly"] as? [String:Any] {
+                            if let hourlyData = hourlyForecasts["data"] as? [[String:Any]] {
+                                for dataPoint in hourlyData.prefix(dayHour) {
                                     if let weatherObject = try? HourlyWeather(json: dataPoint) {
                                         forecastHourlyArray.append(weatherObject)
                                     }

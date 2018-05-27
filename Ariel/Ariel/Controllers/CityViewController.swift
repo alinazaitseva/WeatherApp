@@ -21,10 +21,7 @@ class CityViewController: UIViewController, UISearchBarDelegate, CLLocationManag
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
-    }
-    
-    @IBAction func dissmis(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        searchBar.resignFirstResponder()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -34,7 +31,7 @@ class CityViewController: UIViewController, UISearchBarDelegate, CLLocationManag
             connection.cityManager.addCity(locationString)
             connection.orderedController = connection.addPage()
             connection.setViewControllers([connection.orderedController.last!], direction: .forward, animated: true, completion: nil)
+            navigationController?.popToRootViewController(animated: true)
         }
     }
-
 }

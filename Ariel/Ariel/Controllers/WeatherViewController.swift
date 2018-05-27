@@ -75,25 +75,6 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
                 }
         }
 
-    func updateWeatherForLocation (location:String) {
-        let currentLocation = location
-        CLGeocoder().geocodeAddressString(location) { (placemarks:[CLPlacemark]?, error:Error?) in
-            if error == nil {
-                if let location = placemarks?.first?.location {
-                    DailyWeather.forecast(withLocation: location.coordinate, completion: { (results:[DailyWeather]?) in
-                        if let weatherData = results {
-                            self.forecastData = weatherData
-                            self.cityName = currentLocation
-                            DispatchQueue.main.async {
-                                self.weatherTableview.reloadData()
-                            }
-                        }
-                    })
-                }
-            }
-        }
-    }
-    
     func updateWeatherForLocationHourly (location:String) {
         CLGeocoder().geocodeAddressString(location) { (placemarks:[CLPlacemark]?, error:Error?) in
             if error == nil {
@@ -139,15 +120,23 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
         cityLabel.text = cityName
         return cell
     }
-    
-//    @IBAction func addCity(_ sender: UIBarButtonItem) {
-//        performSegue(withIdentifier:"modalWindow", sender: self)
-//    }
-    
-    override func performSegue(withIdentifier identifier: String, sender: Any?) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        _ = storyboard.instantiateViewController(withIdentifier: "CityViewController") as? CityViewController
-        performSegue(withIdentifier:"modalWindow", sender: self)
+    func updateWeatherForLocation (location:String) {
+        let currentLocation = location
+        CLGeocoder().geocodeAddressString(location) { (placemarks:[CLPlacemark]?, error:Error?) in
+            if error == nil {
+                if let location = placemarks?.first?.location {
+                    DailyWeather.forecast(withLocation: location.coordinate, completion: { (results:[DailyWeather]?) in
+                        if let weatherData = results {
+                            self.forecastData = weatherData
+                            self.cityName = currentLocation
+                            DispatchQueue.main.async {
+                                self.weatherTableview.reloadData()
+                            }
+                        }
+                    })
+                }
+            }
+        }
     }
 }
 
