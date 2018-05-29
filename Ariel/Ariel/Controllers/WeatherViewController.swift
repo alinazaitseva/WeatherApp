@@ -12,7 +12,6 @@ import MapKit
 
 class WeatherViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, CLLocationManagerDelegate {
     
-    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var weatherTableview: UITableView!
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var temperatureLabel: UILabel!
@@ -31,7 +30,6 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
         
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
@@ -48,14 +46,6 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
                 self.updateWeatherForLocation(location: locality)
                 self.updateWeatherForLocationHourly(location: locality)
             }
-        }
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        if let locationString = searchBar.text, !locationString.isEmpty {
-            updateWeatherForLocation(location: locationString)
-            updateWeatherForLocationHourly(location: locationString)
         }
     }
     
