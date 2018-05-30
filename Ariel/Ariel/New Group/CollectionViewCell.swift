@@ -12,5 +12,4 @@ class CollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var temperatureCollectionLabel: UILabel!
     @IBOutlet weak var timeCollectionLabel: UILabel!
-    
 }
