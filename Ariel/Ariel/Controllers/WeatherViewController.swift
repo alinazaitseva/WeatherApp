@@ -110,6 +110,7 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
         temperatureLabel.text = "\(celsiusDaily.transformFahrenheit)°C"
         weatherStateLabel.text = "\(weatherObject.icon)"
         cityLabel.text = cityName
+        cell.selectionStyle = UITableViewCellSelectionStyle.none
         return cell
     }
     func updateWeatherForLocation (location:String) {
