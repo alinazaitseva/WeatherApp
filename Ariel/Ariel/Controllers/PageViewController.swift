@@ -12,7 +12,8 @@ class PageViewController: UIPageViewController {
     
     let identifierR = "WeatherViewController"
     var cityManager = CityManager()
-
+    var cityController: CityViewController?
+    
     lazy var orderedController: [UIViewController] = {
        var pages = [self.getViewController(withLocationString: nil)]
         for city in cityManager.cities {
@@ -30,9 +31,10 @@ class PageViewController: UIPageViewController {
     }
     
     @IBAction func addButton(_ sender: Any) {
-        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CityViewController") as? CityViewController else { return }
-        vc.delegate = self
-        self.navigationController?.pushViewController(vc, animated: true)
+//        guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "CityViewController") as? CityViewController else { return }
+//        vc.delegate = self
+//        self.navigationController?.pushViewController(vc, animated: true)
+        self.navigationController?.pushViewController(cityController!, animated: true)
     }
 
     func addPage() -> [UIViewController] {
@@ -52,6 +54,14 @@ class PageViewController: UIPageViewController {
         guard let weatherController = controller as? WeatherViewController else { return controller }
         weatherController.cityName = locationString
         return weatherController
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "showCity") {
+            guard let viewController = segue.destination as? CityViewController
+                else { return }
+            self.cityController = viewController
+        }
     }
 }
 

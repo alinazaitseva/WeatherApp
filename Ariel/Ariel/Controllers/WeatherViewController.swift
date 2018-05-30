@@ -128,6 +128,8 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
                         }
                     })
                 }
+            } else {
+                print("Achtung")
             }
         }
     }
