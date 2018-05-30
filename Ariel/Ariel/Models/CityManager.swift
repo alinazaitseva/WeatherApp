@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CityModel {
+class CityManager {
     
     var cities: [String] = []
     var previousCity = 0

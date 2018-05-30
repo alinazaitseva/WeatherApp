@@ -11,11 +11,10 @@ import UIKit
 class PageViewController: UIPageViewController {
     
     let identifierR = "WeatherViewController"
-    var cityManager = CityModel()
+    var cityManager = CityManager()
 
     lazy var orderedController: [UIViewController] = {
-       var pages = [self.getViewController(withLocationString: nil),
-                    self.getViewController(withLocationString: "Lviv")]
+       var pages = [self.getViewController(withLocationString: nil)]
         for city in cityManager.cities {
             pages.append(self.getViewController(withLocationString: city))
         }

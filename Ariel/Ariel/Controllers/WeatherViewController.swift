@@ -78,6 +78,8 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
                         }
                     })
                 }
+            } else {
+                print("Achtung")
             }
         }
     }
@@ -102,10 +104,10 @@ class WeatherViewController: UIViewController, UITableViewDataSource, UITableVie
         let celsiusDaily = DegreesConverter(fahrenheit: weatherObject.temperature)
         
         cell.textLabel?.text = weatherObject.summary
-        cell.detailTextLabel?.text = "\(celsiusDaily.convertTo)°C"
+        cell.detailTextLabel?.text = "\(celsiusDaily.transformFahrenheit)°C"
         cell.imageView?.image = UIImage(named: weatherObject.icon)
         
-        temperatureLabel.text = "\(celsiusDaily.convertTo)°C"
+        temperatureLabel.text = "\(celsiusDaily.transformFahrenheit)°C"
         weatherStateLabel.text = "\(weatherObject.icon)"
         cityLabel.text = cityName
         return cell
@@ -137,7 +139,7 @@ extension WeatherViewController: UICollectionViewDelegate, UICollectionViewDataS
         let celsiusHourly = DegreesConverter(fahrenheit: hourlyWeatherObject.temperature)
         let hours = ForecastDateTime(hourlyWeatherObject.time)
         cell.timeCollectionLabel?.text = "\(hours.shortTime)"
-        cell.temperatureCollectionLabel?.text = "\(celsiusHourly.convertTo)°C"
+        cell.temperatureCollectionLabel?.text = "\(celsiusHourly.transformFahrenheit)°C"
         return cell
     }
     

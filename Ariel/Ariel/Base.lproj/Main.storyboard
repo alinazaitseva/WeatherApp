@@ -151,7 +151,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pvp-EK-9kh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="320.80000000000001" y="850.52473763118451"/>
+            <point key="canvasLocation" x="209" y="930"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="sJs-nU-xhO">
@@ -169,6 +169,9 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="JPl-Ge-TsX" kind="show" identifier="showCity" id="DRP-Il-J9k"/>
+                    </connections>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nld-Po-oOu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -187,7 +190,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <searchBar contentMode="redraw" barStyle="blackTranslucent" searchBarStyle="minimal" placeholder="Vinnitsya" translatesAutoresizingMaskIntoConstraints="NO" id="05b-It-FTk">
-                                <rect key="frame" x="0.0" y="80" width="375" height="56"/>
+                                <rect key="frame" x="0.0" y="124" width="375" height="56"/>
                                 <color key="barTintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
@@ -201,6 +204,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="az9-ND-Rza"/>
                     </view>
+                    <navigationItem key="navigationItem" id="fXY-If-0aE"/>
                     <connections>
                         <outlet property="searchBar" destination="05b-It-FTk" id="bAv-bv-Ffq"/>
                         <outlet property="searchDisplayController" destination="eXq-9i-jgS" id="viM-Y2-Xz5"/>
@@ -216,7 +220,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1020" y="851"/>
+            <point key="canvasLocation" x="1049" y="930"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="OfF-Jx-FJv">

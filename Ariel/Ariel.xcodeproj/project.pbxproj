@@ -11,7 +11,7 @@
 		CE0EE02A20AC68CA006DB5A7 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0EE02920AC68CA006DB5A7 /* CollectionViewCell.swift */; };
 		CE0EE02C20AC6F5F006DB5A7 /* HourlyWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0EE02B20AC6F5F006DB5A7 /* HourlyWeather.swift */; };
 		CE2BF95920B0CD050060E284 /* ForecastDateTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2BF95820B0CD050060E284 /* ForecastDateTime.swift */; };
-		CE50473120B2F82600ADB4C9 /* CityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE50473020B2F82600ADB4C9 /* CityModel.swift */; };
+		CE50473120B2F82600ADB4C9 /* CityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE50473020B2F82600ADB4C9 /* CityManager.swift */; };
 		CE52068C20AADB7100A219F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE52068B20AADB7100A219F3 /* AppDelegate.swift */; };
 		CE52069120AADB7100A219F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE52068F20AADB7100A219F3 /* Main.storyboard */; };
 		CE52069320AADB8300A219F3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE52069220AADB8300A219F3 /* Assets.xcassets */; };
@@ -28,7 +28,7 @@
 		CE0EE02920AC68CA006DB5A7 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		CE0EE02B20AC6F5F006DB5A7 /* HourlyWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyWeather.swift; sourceTree = "<group>"; };
 		CE2BF95820B0CD050060E284 /* ForecastDateTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastDateTime.swift; sourceTree = "<group>"; };
-		CE50473020B2F82600ADB4C9 /* CityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityModel.swift; sourceTree = "<group>"; };
+		CE50473020B2F82600ADB4C9 /* CityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityManager.swift; sourceTree = "<group>"; };
 		CE52068820AADB7100A219F3 /* Ariel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ariel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE52068B20AADB7100A219F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE52069020AADB7100A219F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -127,7 +127,7 @@
 			children = (
 				CEBA6EA220AB821F00B7EEA5 /* DailyWeather.swift */,
 				CE0EE02B20AC6F5F006DB5A7 /* HourlyWeather.swift */,
-				CE50473020B2F82600ADB4C9 /* CityModel.swift */,
+				CE50473020B2F82600ADB4C9 /* CityManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -204,7 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE50473120B2F82600ADB4C9 /* CityModel.swift in Sources */,
+				CE50473120B2F82600ADB4C9 /* CityManager.swift in Sources */,
 				CE0EE01E20AC20D9006DB5A7 /* WeatherViewController.swift in Sources */,
 				CE2BF95920B0CD050060E284 /* ForecastDateTime.swift in Sources */,
 				CE52068C20AADB7100A219F3 /* AppDelegate.swift in Sources */,

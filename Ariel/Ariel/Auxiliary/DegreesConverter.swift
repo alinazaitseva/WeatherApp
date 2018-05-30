@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DegreesConverter {
+struct DegreesConverter {
     
     private var fahrenheit: Double
     
@@ -16,7 +16,7 @@ class DegreesConverter {
                 self.fahrenheit = fahrenheit
     }
     
-    var convertTo: String {
+    var transformFahrenheit: String {
                 return prepareDegrees(from: fahrenheit)
     }
     
